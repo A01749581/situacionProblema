@@ -1,1 +1,7 @@
-// rmr
+/*
+* Clase 
+*/
+class Video
+{
+
+}
