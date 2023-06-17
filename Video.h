@@ -6,32 +6,34 @@ Definición de superclase Video
 #include <iostream>
 #include <string>
 #include <vector>
-#ifndef FIGURA_H
-#define FIGURA_H
+#ifndef VIDEO_H
+#define VIDEO_H
+
 using namespace std;
 
 class Video
 {
     //Atributos
     protected:
-    string Id;
+    string id;
     string titulo;
     string genero;
-    double calificacion;
-    double duracion;
+    string calificacion;
+    string duracion;
     string fEstreno;
+    vector <Video *> videos;
 
     //Métodos
     public:
-    vector lee();
-    Video();
-    Video(string id, string titulo, string genero, double calificacion,double duracion, string fEsreno);
+    Video(string id, string titulo, string genero, string calificacion,string duracion, string fEsreno);
     string getId();
     string getTitulo();
     string getGenero();
-    double getCalificacion();
-    double getDuracion();
+    string getCalificacion();
+    string setCalificacion();
+    string getDuracion();
     string getFecha();
-    virtual void imprimeDatos();
+    virtual void imprimeDatos() = 0;
+    
 };
 #endif

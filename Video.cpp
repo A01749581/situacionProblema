@@ -6,36 +6,26 @@ Implementación de superclase Video
 #include "Video.h"
 #include <fstream>
 
-Video::lee()
-{
-    entrada.open("DatosPeliculas.csv");
-    string linea;
-    int numLinea = 1;
 
-    vector<string> vectorVideo;
-        while (getline(entrada, linea))
-        {
-            vectorVideo.push_back(linea);
-        }
-    
-}
-
-Video::Video()
+Video::Video(string id, string titulo, string genero, string calificacion, string duracion, string fEsreno) 
 {
-}
+    this-> id = id;
+    this -> titulo = titulo;
+    this -> genero = genero; 
+    this -> calificacion =calificacion;
+    this -> duracion = duracion;
+    this -> fEstreno = fEstreno;
 
-Video::Video(string id, string titulo, string genero, double calificacion, double duracion, string fEsreno) : Id(Id), titulo(titulo), genero(genero), calificacion(calificacion), duracion(duracion), fEsreno(fEsreno)
-{
 }
 
 string Video::getId()
 {
-    return Id();
+    return id;
 }
 
 string Video::getTitulo()
 {
-    return titulo();
+    return titulo;
 }
 
 string Video::getGenero()
@@ -43,27 +33,23 @@ string Video::getGenero()
     return genero;
 }
 
-double Video::getCalificacion()
+string Video::getCalificacion()
 {
     return calificacion;
 }
 
-double Video::getDuracion()
+string Video::setCalificacion()
+{
+    return calificacion;
+}
+
+string Video::getDuracion()
 {
     return duracion;
 }
 
 string Video::getFecha()
 {
-    return fEstreno();
+    return fEstreno;
 }
 
-void Video::imprimeDatos()
-{
-    cout << "Id video: " << getId() << endl;
-    cout << "Título del video: " << getTitulo() << endl;
-    cout << "Género del video: " << getGenero() << endl;
-    cout << "Calificación del video: " << getCalificacion() << endl;
-    cout << "Duración del video: " << getDuracion() << endl;
-    cout << "Fecha de estreno del video: " << getFecha() << endl;
-}

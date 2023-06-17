@@ -2,7 +2,7 @@
 Autor: Mariana Balderrábano Aguilar
 Pruebas de clases
 */
-
+/*
 // Prueba de clase video
 // lee el archivo de videos
 cout << "numero de línea" << endl;
@@ -15,3 +15,4 @@ while (getline(entrada, linea))
 {
     vectorVideo.push_back(linea);
 }
+*/
