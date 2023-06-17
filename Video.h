@@ -4,7 +4,12 @@ Definición de superclase Video
 */
 
 #include <iostream>
+#include <string>
+#include <vector>
+#ifndef FIGURA_H
+#define FIGURA_H
 using namespace std;
+
 class Video
 {
     //Atributos
@@ -18,6 +23,7 @@ class Video
 
     //Métodos
     public:
+    vector lee();
     Video();
     Video(string id, string titulo, string genero, double calificacion,double duracion, string fEsreno);
     string getId();
@@ -25,6 +31,7 @@ class Video
     string getGenero();
     double getCalificacion();
     double getDuracion();
+    string getFecha();
     virtual void imprimeDatos();
 };
 #endif
