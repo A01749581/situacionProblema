@@ -6,86 +6,151 @@ Leer el archivo de texto en C++
 #include "Pelicula.h"
 #include "Episodio.h"
 #include <iostream>
-#include <fstream>  
-#include <sstream> 
+#include <fstream>
+#include <sstream>
 #include <vector>
+#include <string>
+
 using namespace std;
 vector<string> separar(string linea);
-vector <Video*> videos;
+vector<string> separarAmp(string linea);
+vector<Video *> videos;
+vector<Pelicula *> peliculas;
+vector<Episodio *> episodios;
+double calificacion;
+double respuesta;
 
 int main(int argc, char const *argv[])
 {
-    ifstream entrada;
-
-    entrada.open("DatosPeliculas.csv");
-
-    string linea;
-    getline(entrada, linea);
-
-    while (getline(entrada, linea))
+    while (true)
     {
-        vector <string> datos = separar(linea);
+        cout << "---------Menú---------" << endl
+             << endl
+             << "Opciones\n"
+             << "1 cargar y mostrar el archivo csv\n"
+             << "2.1 muestra videos con calificación mayor o igual a la tecleada\n"
+             << "2.2 género tecleado por usuario\n"
+             << "3 Mostrar episodios de una serie\n"
+             << "4 Mostrar películas con calificación mayor al número ingresado\n"
+             << "5 Salir" << endl;
 
-        if(datos.size() == 6)
+        cin >> respuesta;
+        if (respuesta == 1)
         {
-            //cout << "Película: " << endl;
-            string id = datos[0];
-            string titulo = datos[1];
-            string duracion = datos[2];
-            string genero = datos[3];
-            string calificacion = datos[4];
-            string fEstreno = datos[5];
+            ifstream entrada;
+            entrada.open("DatosPeliculas.csv");
 
-            Pelicula* pelicula = new Pelicula(id, titulo, duracion, genero, calificacion, fEstreno);
-            videos.push_back(pelicula);
-        }
-        else
-        {
-            //cout<<"Episodio: "<< endl;
-            string id = datos[0];
-            string titulo = datos[1];
-            string genero = datos[2];
-            string calificacion = datos[3];
-            string duracion = datos[4];
-            string fEstreno = datos[5];
-            string idE = datos[6];
-            string tituloE = datos[7];
-            string temporada = datos[8];
-            string numEp = datos[9];
+            string linea;
+            getline(entrada, linea);
 
-            Episodio* episodio = new Episodio(id, titulo, genero, calificacion, duracion, fEstreno, idE,tituloE, temporada, numEp);
-            videos.push_back(episodio);
+            while (getline(entrada, linea))
+            {
+                vector<string> datos = separar(linea);
+
+                if (datos.size() == 6)
+                {
+                    // cout << "Película: " << endl;
+                    string id = datos[0];
+                    string titulo = datos[1];
+                    string duracion = datos[2];
+                    string genero = datos[3];
+                    string calificacion = datos[4];
+                    string fEstreno = datos[5];
+
+                    Pelicula *pelicula = new Pelicula(id, titulo, duracion, genero, calificacion, fEstreno);
+                    videos.push_back(pelicula);
+                    peliculas.push_back(pelicula);
+                }
+                else
+                {
+                    // cout<<"Episodio: "<< endl;
+                    string id = datos[0];
+                    string titulo = datos[1];
+                    string genero = datos[2];
+                    string calificacion = datos[3];
+                    string duracion = datos[4];
+                    string fEstreno = datos[5];
+                    string idE = datos[6];
+                    string tituloE = datos[7];
+                    string temporada = datos[8];
+                    string numEp = datos[9];
+
+                    Episodio *episodio = new Episodio(id, titulo, genero, calificacion, duracion, fEstreno, idE, tituloE, temporada, numEp);
+                    videos.push_back(episodio);
+                    episodios.push_back(episodio);
+                }
+            }
+            entrada.close();
+            for (int i = 0; i < videos.size(); i++)
+            {
+                videos[i]->imprimeDatos();
+            }
+            
         }
         
-    }
-    
-    entrada.close();
 
-    for (int i = 0; i < videos.size(); i++)
-    {
-        videos[i]->imprimeDatos();
+        if (respuesta == 2.2)
+        {
+            cout << "Videos por calificación mayor a (calificaciones de 1 a 7): " << endl;
+            cin >> calificacion;
+
+            for (int i = 0; i < videos.size(); i++)
+            {
+                videos[i]->imprimeDatos();
+                /*
+
+                if(videos[i]-> getCaliDouble() >= calificacion)
+                {
+                    videos[i] -> imprimeDatos();
+                }
+                */
+            }
+        }
+        if (respuesta == 5)
+        {
+            false;
+        }
     }
-    return 0;
 }
-
-vector <string> separar(string linea) 
+vector<string> separar(string linea)
 {
-    vector<string> tokens;  //componentes de la línea
+    vector<string> tokens; // componentes de la línea
 
-    stringstream entrada(linea);    //flujo de datos a partir de una cadena 
-    string dato;    //token individual 
+    stringstream entrada(linea); // flujo de datos a partir de una cadena
+    string dato;                 // token individual
     int numeroTokens = 0;
-  while (getline(entrada, dato, ','))
+    while (getline(entrada, dato, ','))
     {
-        //cout << dato << endl;
+        // cout << dato << endl;
         if (dato != "" && dato != "\n" && dato != "\r")
         {
-            //cout << dato << numeroTokens <<endl;
+            // cout << dato << numeroTokens <<endl;
             tokens.push_back(dato); // GUARDA  en el vector
             numeroTokens++;
         }
     }
-    //cout << "tokens: " << numeroTokens << endl << endl; comprobar si esta contando correctamente
-    
+    // cout << "tokens: " << numeroTokens << endl << endl; comprobar si esta contando correctamente
+
+    return tokens;
+}
+vector<string> separarAmp(string linea)
+{
+    vector<string> tokens; // componentes de la línea
+
+    stringstream entrada(linea); // flujo de datos a partir de una cadena
+    string dato;                 // token individual
+    int numeroTokens = 0;
+    while (getline(entrada, dato, '&'))
+    {
+        // cout << dato << endl;
+        if (dato != "" && dato != "\n" && dato != "\r")
+        {
+            // cout << dato << numeroTokens <<endl;
+            tokens.push_back(dato); // GUARDA  en el vector
+            numeroTokens++;
+        }
+    }
+    // cout << "tokens: " << numeroTokens << endl << endl; comprobar si esta contando correctamente
+
     return tokens;
 }

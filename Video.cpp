@@ -5,6 +5,7 @@ Implementación de superclase Video
 
 #include "Video.h"
 #include <fstream>
+#include <string>
 
 
 Video::Video(string id, string titulo, string genero, string calificacion, string duracion, string fEsreno) 
@@ -38,10 +39,6 @@ string Video::getCalificacion()
     return calificacion;
 }
 
-string Video::setCalificacion()
-{
-    return calificacion;
-}
 
 string Video::getDuracion()
 {
@@ -53,3 +50,7 @@ string Video::getFecha()
     return fEstreno;
 }
 
+double Video::CaliDouble()
+{
+    return stod(calificacion);
+}

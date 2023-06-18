@@ -21,6 +21,5 @@ class Pelicula : public Video
     public:
     Pelicula(string id, string titulo, string genero, string calificacion,string duracion, string fEsreno);
     void imprimeDatos();
-    
 };
 #endif

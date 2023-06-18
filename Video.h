@@ -30,10 +30,10 @@ class Video
     string getTitulo();
     string getGenero();
     string getCalificacion();
-    string setCalificacion();
     string getDuracion();
     string getFecha();
+
     virtual void imprimeDatos() = 0;
-    
+    double CaliDouble();
 };
 #endif
