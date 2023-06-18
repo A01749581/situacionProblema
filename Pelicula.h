@@ -12,6 +12,7 @@ Definición de subclase Película
 
 using namespace std;
 
+//Clase Pelicula que hereda de video 
 class Pelicula : public Video
 {
     //Atributos
@@ -20,6 +21,8 @@ class Pelicula : public Video
     //Métodos
     public:
     Pelicula(string id, string titulo, string genero, string calificacion,string duracion, string fEsreno);
+    double getCalificacion();
+    //Sobreescribe el método
     void imprimeDatos();
 };
 #endif

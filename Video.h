@@ -11,9 +11,10 @@ Definición de superclase Video
 
 using namespace std;
 
+//Declara clase video
 class Video
 {
-    //Atributos
+    //Atributos de video
     protected:
     string id;
     string titulo;
@@ -21,9 +22,9 @@ class Video
     string calificacion;
     string duracion;
     string fEstreno;
-    vector <Video *> videos;
+    vector <Video *> videos;    //vector de punteros a objetos de tipo video
 
-    //Métodos
+    //Métodos de video
     public:
     Video(string id, string titulo, string genero, string calificacion,string duracion, string fEsreno);
     string getId();
@@ -33,7 +34,10 @@ class Video
     string getDuracion();
     string getFecha();
 
+    //método virtual que imprime datos
     virtual void imprimeDatos() = 0;
-    double CaliDouble();
+    //regresa calificación en double
+    double getCaliDouble();
+    double setCalificacion(calif);
 };
 #endif

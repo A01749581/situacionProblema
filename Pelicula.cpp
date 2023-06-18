@@ -6,6 +6,11 @@ Pelicula::Pelicula(string id, string titulo, string genero, string calificacion,
 {
 }
 
+double Pelicula::getCalificacion()
+{
+    return stod(calificacion);
+}
+
 void Pelicula::imprimeDatos()
 {
     cout << "Id película: " << Video::getId() << endl;

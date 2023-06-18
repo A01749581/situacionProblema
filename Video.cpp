@@ -50,7 +50,14 @@ string Video::getFecha()
     return fEstreno;
 }
 
-double Video::CaliDouble()
+double Video::getCaliDouble()
 {
-    return stod(calificacion);
+    double c = stod(calificacion);
+    return c;
+}
+
+double Video::setCalificacion(calif)
+{
+    calificacion = calif;
+    return calificacion;
 }

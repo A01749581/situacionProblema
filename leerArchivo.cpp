@@ -17,8 +17,10 @@ vector<string> separarAmp(string linea);
 vector<Video *> videos;
 vector<Pelicula *> peliculas;
 vector<Episodio *> episodios;
-double calificacion;
+double califi;
 double respuesta;
+string genero;
+string ser;
 
 int main(int argc, char const *argv[])
 {
@@ -32,7 +34,8 @@ int main(int argc, char const *argv[])
              << "2.2 género tecleado por usuario\n"
              << "3 Mostrar episodios de una serie\n"
              << "4 Mostrar películas con calificación mayor al número ingresado\n"
-             << "5 Salir" << endl;
+             << "5 Calificar un video\n"
+             << "6 Salir" << endl;
 
         cin >> respuesta;
         if (respuesta == 1)
@@ -88,27 +91,84 @@ int main(int argc, char const *argv[])
             
         }
         
+        if(respuesta == 2.1)
+        {
+            /*
+            cout >> "Teclee un género" >> endl;
+            cin << gro;
+            for (int i = 0; i < videos.size(); i++)
+            {
+                if(videos[i]->getGenero() == gro)
+                {
+                    videos[i] -> imprimeDatos();
+                }
+            }
+            */
+        }
 
         if (respuesta == 2.2)
         {
             cout << "Videos por calificación mayor a (calificaciones de 1 a 7): " << endl;
-            cin >> calificacion;
+            cin >> califi;
 
             for (int i = 0; i < videos.size(); i++)
             {
-                videos[i]->imprimeDatos();
-                /*
-
-                if(videos[i]-> getCaliDouble() >= calificacion)
+                if(videos[i]->getCaliDouble() >= califi)
                 {
                     videos[i] -> imprimeDatos();
                 }
-                */
+                
             }
         }
+
+        if (respuesta == 3)
+        {
+            /*
+            cout << "Serie de la que quieres ver los episodios: " << endl;
+            cin >> ser;
+            for(int i = 0; i < episodios.size(); i++)
+            {
+                if(episodios[i] -> getTitulo == ser)
+                {
+                    episodios[i] -> imprimeDatos();
+                }
+            }
+            */
+        }
+
+        if (respuesta == 4)
+        {
+            cout << "Videos por calificación mayor a (calificaciones de 1 a 7): " << endl;
+            cin >> califi;
+            for (int i = 0; i < peliculas.size(); i++)
+            {
+                if(peliculas[i]->getCalificacion() >= califi)
+                {
+                    peliculas[i] -> imprimeDatos();
+                }
+                
+            }
+
+        }
+
         if (respuesta == 5)
         {
-            false;
+            cout << "Calificar un video (calificaciones de 1 a 7): " << endl;
+            cin >> califi;
+            for (int i = 0; i < videos.size(); i++)
+            {
+                if(peliculas[i]->getCalificacion() >= califi)
+                {
+                    peliculas[i] -> imprimeDatos();
+                }
+                
+            }
+
+        }
+
+        if (respuesta == 6)
+        {
+            break;
         }
     }
 }
