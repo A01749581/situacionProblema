@@ -8,13 +8,13 @@ Implementación de superclase Video
 #include <string>
 
 //Constructor de la clase Video que inicializa valores
-Video::Video(string id, string titulo, string genero, string calificacion, string duracion, string fEsreno) 
+Video::Video(string id, string titulo, string duracion, string genero, string calificacion, string fEsreno)
 {
     this-> id = id;
     this -> titulo = titulo;
+    this -> duracion = duracion;
     this -> genero = genero; 
     this -> calificacion =calificacion;
-    this -> duracion = duracion;
     this -> fEstreno = fEstreno;
 
 }
@@ -58,6 +58,5 @@ string Video::getFecha()
 //Método con el que se obtiene la calificación en double
 double Video::getCaliDouble()
 {
-    double c = stod(calificacion);
-    return c;
+    return stod(calificacion);
 }

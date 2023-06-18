@@ -15,7 +15,7 @@ using namespace std;
 class Episodio : public Video
 {
     //Atributos
-    protected:
+    private:
     string idE;
     string tituloE;
     string temporada;
@@ -23,7 +23,8 @@ class Episodio : public Video
     
     //Métodos
     public:
-    Episodio(string id, string titulo, string genero, string calificacion,string duracion, string fEsreno, string idE,string tituloE,string temporada,string numEp);
+    Episodio(string id, string titulo,string duracion,string genero, string calificacion, string fEsreno, string idE,string tituloE,string temporada,string numEp);
+    //double getCaliDouble();
     //Sobreescribe método
     void imprimeDatos();
 };

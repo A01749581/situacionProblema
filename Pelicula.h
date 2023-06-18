@@ -16,12 +16,12 @@ using namespace std;
 class Pelicula : public Video
 {
     //Atributos
-    protected:
+    private:
     
     //Métodos
     public:
-    Pelicula(string id, string titulo, string genero, string calificacion,string duracion, string fEsreno);
-    double getCalificacion();
+    Pelicula(string id, string titulo, string duracion, string genero, string calificacion, string fEsreno);
+    //double getCaliDouble();
     //Sobreescribe el método
     void imprimeDatos();
 };

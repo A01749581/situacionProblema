@@ -1,6 +1,6 @@
 /*
 Autor: Mariana Balderrábano Aguilar 
-Definición de superclase Video
+Definición de superclase Video (clase abstracta)
 */
 
 #include <iostream>
@@ -18,16 +18,15 @@ class Video
     protected:
     string id;
     string titulo;
+    string duracion;
     string genero;
     string calificacion;
-    //string calif;
-    string duracion;
     string fEstreno;
-    vector <Video *> videos;    //vector de punteros a objetos de tipo video
+    //vector <Video *> videos;    //vector de punteros a objetos de tipo video
 
     //Métodos de video
     public:
-    Video(string id, string titulo, string genero, string calificacion,string duracion, string fEsreno);
+    Video(string id, string titulo,string duracion, string genero, string calificacion, string fEsreno);
     string getId();
     string getTitulo();
     string getGenero();
@@ -35,7 +34,7 @@ class Video
     string getDuracion();
     string getFecha();
 
-    //método virtual que imprime datos
+    //método abstracto que imprime datos
     virtual void imprimeDatos() = 0;
     //regresa calificación en double
     double getCaliDouble();
