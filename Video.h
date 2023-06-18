@@ -20,6 +20,7 @@ class Video
     string titulo;
     string genero;
     string calificacion;
+    //string calif;
     string duracion;
     string fEstreno;
     vector <Video *> videos;    //vector de punteros a objetos de tipo video
@@ -38,6 +39,6 @@ class Video
     virtual void imprimeDatos() = 0;
     //regresa calificación en double
     double getCaliDouble();
-    double setCalificacion(calif);
+    //double setCalificacion(calif);
 };
 #endif
