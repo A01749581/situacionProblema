@@ -60,3 +60,8 @@ double Video::getCaliDouble()
 {
     return stod(calificacion);
 }
+
+double Video::setCalificacion(double calificacion)
+{
+    return calificacion;
+}

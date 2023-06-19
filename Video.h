@@ -38,6 +38,6 @@ class Video
     virtual void imprimeDatos() = 0;
     //regresa calificación en double
     double getCaliDouble();
-    //double setCalificacion(calif);
+    double setCalificacion(double calificacion);
 };
 #endif

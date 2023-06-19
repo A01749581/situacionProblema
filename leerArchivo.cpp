@@ -45,7 +45,8 @@ int main(int argc, char const *argv[])
              << "3 Mostrar episodios de una serie\n"
              << "4 Mostrar películas con calificación mayor al número ingresado\n"
              << "5 Calificar un video\n"
-             << "6 Salir" << endl;
+             << "6 Calcula el promedio de la calificación de una serie\n"
+             << "7 Salir" << endl;
         cout << "Introduzca un número del 1 al 6 de acuerdo con su elección \n"
              << endl;
         // recibe respuesta
@@ -130,7 +131,7 @@ int main(int argc, char const *argv[])
 
                 cout << "Videos con calificación mayor a " << califica << ":\n"
                      << endl;
-                for (int i = 0; i < peliculas.size(); i++)
+                for (int i = 0; i < videos.size(); i++)
                 {
 
                     if (videos[i]->getCaliDouble() >= califica)
@@ -171,36 +172,144 @@ int main(int argc, char const *argv[])
             }
             break;
 
-        /*
         case 3:
+            {
+                bool serieEncontrada = false;
+                cout << "Game Of Thrones    The Big Bang Theory    Memories Of The Alhambra    Death Note    Fate Zero    Unbreakable Kimmy Schmidt" << endl;
+                cout << "Black Mirror    Chilling Aventura of Sabrina    Stranger Things    Maniac    The Simpsons    The 100    Modern Familiar    Friends" << endl;
+
+
+                cout << "Introduzca una serie de la que quiere ver los datos de sus episodios: ";
+                cin.ignore();
+                getline(cin, seriee);
+
+
+                for (int i = 0; i < videos.size(); i++)
+                {
+                    Episodio *epi = dynamic_cast<Episodio *>(episodios[i]);
+                    if (epi != nullptr && epi->getTitulo() == seriee)
+                    {
+                        epi->imprimeDatos();
+                        serieEncontrada = true;
+                    }
+                }
+                if (!serieEncontrada)
+                {
+                    cout << "Serie no encontrada, intente otra vez" << endl;
+                }
+                break;
+            }
+        case 4:
         {
-            bool encontrado = false;
-            string seriee;
+            cout << "Películas con calificación mayor a: " << endl;
+            cin >> califica;
+            bool peliculasEncontradas = false;
+
+            for (int i = 0; i < peliculas.size(); i++)
+            {
+                if (peliculas[i]->getCaliDouble() >= califica)
+                {
+                    peliculas[i]->imprimeDatos();
+                    peliculasEncontradas = true;
+                }
+            }
+            if (!peliculasEncontradas)
+            {
+                cout << "No se encontraron películas con una calificación mayor a " << califica << endl;
+            }
+
+            break;
+        }
+
+        case 5:
+        {
+            string tituloVideo;
+            double nuevaCalificacion;
+
+            cout << "Ingrese el título de la película o nombre del capítulo de la serie a calificar: ";
+            cin.ignore();
+            getline(cin, tituloVideo);
+
+            bool videoEncontrado = false;
+            for (int i = 0; i < videos.size(); i++)
+            {
+                Episodio *epis = dynamic_cast<Episodio *>(videos[i]);
+                if (epis != nullptr)
+                {
+                    if (epis->getTitulo() == tituloVideo)
+                    {
+                        videoEncontrado = true;
+                        cout << "Ingresa la nueva calificación (del 1 al 7): ";
+                        cin >> nuevaCalificacion;
+                        if (nuevaCalificacion >= 1 && nuevaCalificacion <= 7)
+                        {
+                            epis->setCalificacion(nuevaCalificacion);
+
+                            cout << "Calificación actualizada correctamente " << endl;
+                            break;
+                        }
+                    }
+                }
+                else if (videos[i]->getTitulo() == tituloVideo)
+                {
+                    videoEncontrado = true;
+                    cout << "Ingresa la nueva calificación(del 1 al 7): ";
+                    cin >> nuevaCalificacion;
+                    if (nuevaCalificacion >= 1 && nuevaCalificacion <= 7)
+                    {
+                        videos[i]->setCalificacion(nuevaCalificacion);
+                        cout << "Calificación actualizada correctamente " << endl;
+                        break;
+                    }
+                }
+            }
+            if (!videoEncontrado)
+            {
+                cout << "No se encuentra el título o la calificación no está en el rando del 1 al 7" << endl;
+            }
+
+            break;
+        }
+
+        case 6:
+        {
             cout << "Game Of Thrones    The Big Bang Theory    Memories Of The Alhambra    Death Note    Fate Zero    Unbreakable Kimmy Schmidt" << endl;
             cout << "Black Mirror    Chilling Aventura of Sabrina    Stranger Things    Maniac    The Simpsons    The 100    Modern Familiar    Friends" << endl;
 
-            cout << "Introduzca una serie de la que quiere ver los datos de sus episodios: ";
+            cout << "Nombre de la serie de la que desea obtener el promedio: " << endl;
             cin.ignore();
             getline(cin, seriee);
 
-            for (int i = 0; i < episodios.size(); i++)
+            bool serieEncontrada = false;
+            double suma = 0;
+            int ep = 0;
+
+            for (int i = 0; i < videos.size(); i++)
             {
-                Episodio *epi = dynamic_cast<Episodio *> (videos[i]);
-                if(epi != 0)
+                Episodio *epi = dynamic_cast <Episodio *> (videos[i]);
+                if (epi != nullptr && epi->getTitulo() == seriee)
                 {
-                    episodios[i]->imprimeDatos();
-                    encontrado = true;
+                    suma = suma + stod(videos[i]->getCalificacion());
+                    ep++;
+                    serieEncontrada = true;
                 }
             }
-            if (!encontrado)
+            if (serieEncontrada)
             {
-                cout << "Serie no encontrada, favor de escribir otra o escribirla correctamente" << endl;
+                double promedio;
+                promedio = suma / ep;
+
+                cout << "El promedio de las calificaciones de la serie " << seriee << "es de: " << promedio << endl;
+            }
+
+            else 
+            {
+                cout << "Serie no encontrada, intente otra vez" << endl;
             }
             break;
         }
-        break;
-        */
-        case 6:
+
+        case 7:
             x = false;
             break;
 
