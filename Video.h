@@ -16,13 +16,13 @@ class Video
 {
     //Atributos de video
     protected:
-    string id;
-    string titulo;
+    string id;      
+    string titulo;      //nombre de video
     string duracion;
     string genero;
     string calificacion;
-    string fEstreno;
-    //vector <Video *> videos;    //vector de punteros a objetos de tipo video
+    string fEstreno;    //fecha de estreno
+    
 
     //Métodos de video
     public:
@@ -38,6 +38,7 @@ class Video
     virtual void imprimeDatos() = 0;
     //regresa calificación en double
     double getCaliDouble();
-    double setCalificacion(double calificacion);
+    //establece el valor de calificación con el dato en el parámetro 
+    double setCalificacion(double calif);
 };
 #endif

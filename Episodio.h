@@ -27,5 +27,7 @@ class Episodio : public Video
     //double getCaliDouble();
     //Sobreescribe método
     void imprimeDatos();
+    //regresa título de episodio
+    string getTituloE();
 };
 #endif

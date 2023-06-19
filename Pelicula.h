@@ -20,8 +20,8 @@ class Pelicula : public Video
     
     //Métodos
     public:
+    //Constructor 
     Pelicula(string id, string titulo, string duracion, string genero, string calificacion, string fEsreno);
-    //double getCaliDouble();
     //Sobreescribe el método
     void imprimeDatos();
 };

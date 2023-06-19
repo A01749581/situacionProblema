@@ -10,6 +10,7 @@ Implementación de superclase Video
 //Constructor de la clase Video que inicializa valores
 Video::Video(string id, string titulo, string duracion, string genero, string calificacion, string fEsreno)
 {
+    //inicializa valores
     this-> id = id;
     this -> titulo = titulo;
     this -> duracion = duracion;
@@ -61,6 +62,7 @@ double Video::getCaliDouble()
     return stod(calificacion);
 }
 
+//define la calificación de parámetros como calificación
 double Video::setCalificacion(double calificacion)
 {
     return calificacion;

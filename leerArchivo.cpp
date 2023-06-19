@@ -13,11 +13,15 @@ Leer el archivo de texto en C++
 #include <string>
 using namespace std;
 
+//Vector para separar una línea
 vector<string> separar(string linea);
+
+//Vectores que almacenan videos, películas y episodios
 vector<Video *> videos;
 vector<Pelicula *> peliculas;
 vector<Episodio *> episodios;
 
+//variables usadas
 int respuesta;
 int res;
 string generoo;
@@ -25,6 +29,7 @@ string seriee;
 double califica;
 bool x;
 
+//main
 int main(int argc, char const *argv[])
 {
     // condición para seguir
@@ -32,6 +37,7 @@ int main(int argc, char const *argv[])
 
     // declara la variable línea para almacenar cada línea
     string linea;
+
     // crea un objeto ifstream para realizar lectura
     ifstream entrada;
     while (x)
@@ -40,7 +46,7 @@ int main(int argc, char const *argv[])
         // muestra menú
         cout << "---------Menú---------" << endl
              << "Opciones\n"
-             << "1 cargar el archivo csv\n"
+             << "1 Cargar el archivo csv\n"
              << "2 Mostrar videos en general con: \n"
              << "3 Mostrar episodios de una serie\n"
              << "4 Mostrar películas con calificación mayor al número ingresado\n"
@@ -49,6 +55,7 @@ int main(int argc, char const *argv[])
              << "7 Salir" << endl;
         cout << "Introduzca un número del 1 al 6 de acuerdo con su elección \n"
              << endl;
+
         // recibe respuesta
         cin >>
             respuesta;
@@ -92,7 +99,7 @@ int main(int argc, char const *argv[])
                 }
                 else if (datos.size() == 10)
                 {
-                    // se crean las condiciones para episodios
+                    // Condiciones para episodios
                     string id = datos[0];
                     string titulo = datos[1];
                     string genero = datos[2];
@@ -119,9 +126,11 @@ int main(int argc, char const *argv[])
             cout << "Archivo cargado con éxito" << endl;
             break;
 
+        //muestra videos con calificación mayor o igual a la que recibe o por género
         case 2:
             cout << "1 mostrar videos con una calificación mayor o igual a un valor tecleado\n";
             cout << "2 mostrar videos con un género tecleado por el usuario" << endl;
+            //recibe respuesta
             cin >> res;
 
             if (res == 1)
@@ -131,6 +140,8 @@ int main(int argc, char const *argv[])
 
                 cout << "Videos con calificación mayor a " << califica << ":\n"
                      << endl;
+                
+                //recorre el vector de videos e imprime los que tienen calificación mayor o igual a la recibida
                 for (int i = 0; i < videos.size(); i++)
                 {
 
@@ -143,21 +154,24 @@ int main(int argc, char const *argv[])
             }
             else if (res == 2)
             {
+                //Muestra ejemplos de géneros dentro del archivo
                 cout << "Ejemplos de géneros: \nRomance    Accion    Aventura    Drama    Fantasy    Suspenso    Sci-Fi" << endl;
                 cout << "Comedia    Misterio    Animacion    Crimen    Drama    Biografia    Familiar" << endl;
 
                 cout << "Género: ";
+                //guarda el género tecleado por el usuario
                 cin >> generoo;
 
                 cout << "Videos con género " << generoo << ":" << endl;
                 bool encontrado = false;
+
+                // Recorre vector video e imprime los que coinciden con el  género introducido
                 for (int i = 0; i < videos.size(); i++)
                 {
                     string videoGenero = videos[i]->getGenero();
 
                     // si encuentra el género lo imprime, de lo contrario, regresa no positiono npos.
                     // npos para no caer en excepción
-
                     if (videoGenero.find(generoo) != string::npos)
                     {
                         videos[i]->imprimeDatos();
@@ -165,6 +179,7 @@ int main(int argc, char const *argv[])
                     }
                 }
 
+                //display error
                 if (!encontrado)
                 {
                     cout << "Género, no encontrado, favor de introducirlo igual al señalado en el Ejemplos de géneros" << endl;
@@ -172,18 +187,18 @@ int main(int argc, char const *argv[])
             }
             break;
 
+        // código que muestra los episodios de una serie.
         case 3:
             {
                 bool serieEncontrada = false;
                 cout << "Game Of Thrones    The Big Bang Theory    Memories Of The Alhambra    Death Note    Fate Zero    Unbreakable Kimmy Schmidt" << endl;
                 cout << "Black Mirror    Chilling Aventura of Sabrina    Stranger Things    Maniac    The Simpsons    The 100    Modern Familiar    Friends" << endl;
 
-
                 cout << "Introduzca una serie de la que quiere ver los datos de sus episodios: ";
-                cin.ignore();
-                getline(cin, seriee);
+                cin.ignore(); 
+                getline(cin, seriee); //pide serie
 
-
+                //recorre videos y muestra los episodios de la serie definida 
                 for (int i = 0; i < videos.size(); i++)
                 {
                     Episodio *epi = dynamic_cast<Episodio *>(episodios[i]);
@@ -193,18 +208,22 @@ int main(int argc, char const *argv[])
                         serieEncontrada = true;
                     }
                 }
+                //display error
                 if (!serieEncontrada)
                 {
                     cout << "Serie no encontrada, intente otra vez" << endl;
                 }
                 break;
             }
+        
+        //código que imprime películas con calificación mayor a la introducida por el usuario
         case 4:
         {
             cout << "Películas con calificación mayor a: " << endl;
-            cin >> califica;
+            cin >> califica; //guarda la calificación 
             bool peliculasEncontradas = false;
 
+            //recorre el vector películas que imprime calificaciones de películas mayores o iguales a la calificación ingresada
             for (int i = 0; i < peliculas.size(); i++)
             {
                 if (peliculas[i]->getCaliDouble() >= califica)
@@ -213,6 +232,8 @@ int main(int argc, char const *argv[])
                     peliculasEncontradas = true;
                 }
             }
+
+            //despliega error
             if (!peliculasEncontradas)
             {
                 cout << "No se encontraron películas con una calificación mayor a " << califica << endl;
@@ -221,6 +242,7 @@ int main(int argc, char const *argv[])
             break;
         }
 
+        //código para calificar un video y modifica la calificación
         case 5:
         {
             string tituloVideo;
@@ -229,18 +251,23 @@ int main(int argc, char const *argv[])
             cout << "Ingrese el título de la película o nombre del capítulo de la serie a calificar: ";
             cin.ignore();
             getline(cin, tituloVideo);
+            //pide y almacena el título del video
 
             bool videoEncontrado = false;
+
+            //recorre vector video y verifica que los objetos sean de tipo episodio para después compararlo con el título
             for (int i = 0; i < videos.size(); i++)
             {
                 Episodio *epis = dynamic_cast<Episodio *>(videos[i]);
                 if (epis != nullptr)
                 {
-                    if (epis->getTitulo() == tituloVideo)
+                    //compáralo con el código
+                    if (epis->getTituloE() == tituloVideo)
                     {
                         videoEncontrado = true;
                         cout << "Ingresa la nueva calificación (del 1 al 7): ";
                         cin >> nuevaCalificacion;
+                        //define el rango válido de calificación
                         if (nuevaCalificacion >= 1 && nuevaCalificacion <= 7)
                         {
                             epis->setCalificacion(nuevaCalificacion);
@@ -250,11 +277,15 @@ int main(int argc, char const *argv[])
                         }
                     }
                 }
+
+                // verifica que es película y si el titulo coincide con el título ingresado
                 else if (videos[i]->getTitulo() == tituloVideo)
                 {
                     videoEncontrado = true;
                     cout << "Ingresa la nueva calificación(del 1 al 7): ";
                     cin >> nuevaCalificacion;
+
+                    //valida calificaciones 
                     if (nuevaCalificacion >= 1 && nuevaCalificacion <= 7)
                     {
                         videos[i]->setCalificacion(nuevaCalificacion);
@@ -263,14 +294,16 @@ int main(int argc, char const *argv[])
                     }
                 }
             }
+            // display error 
             if (!videoEncontrado)
             {
-                cout << "No se encuentra el título o la calificación no está en el rando del 1 al 7" << endl;
+                cout << "No se encuentra el título o la calificación no está en el rango del 1 al 7" << endl;
             }
 
             break;
         }
 
+        //calcula promedio de serie
         case 6:
         {
             cout << "Game Of Thrones    The Big Bang Theory    Memories Of The Alhambra    Death Note    Fate Zero    Unbreakable Kimmy Schmidt" << endl;
@@ -284,6 +317,7 @@ int main(int argc, char const *argv[])
             double suma = 0;
             int ep = 0;
 
+            //recorre vector de  videos y calcula la suma de las calificaciones 
             for (int i = 0; i < videos.size(); i++)
             {
                 Episodio *epi = dynamic_cast <Episodio *> (videos[i]);
@@ -294,14 +328,17 @@ int main(int argc, char const *argv[])
                     serieEncontrada = true;
                 }
             }
+
+            //obtiene promedio
             if (serieEncontrada)
             {
                 double promedio;
                 promedio = suma / ep;
 
-                cout << "El promedio de las calificaciones de la serie " << seriee << "es de: " << promedio << endl;
+                cout << "El promedio de las calificaciones de la serie " << seriee << " es de: " << promedio << endl;
             }
 
+            //despliga error
             else 
             {
                 cout << "Serie no encontrada, intente otra vez" << endl;
@@ -309,7 +346,9 @@ int main(int argc, char const *argv[])
             break;
         }
 
+        //salir
         case 7:
+            cout << "Ha salido, hasta pronto :)"<<endl;
             x = false;
             break;
 

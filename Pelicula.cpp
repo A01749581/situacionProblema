@@ -11,13 +11,6 @@ Pelicula::Pelicula(string id, string titulo, string duracion, string genero, str
 {
 }
 
-/*
-double Pelicula::getCaliDouble()
-{
-    return stod(calificacion);
-}
-*/
-
 //Método sobreescrito para imprimir datos en formato de Película con los datos de Película
 void Pelicula::imprimeDatos()
 {
